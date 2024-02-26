@@ -8,18 +8,18 @@ public class Program
         {
             int newLine = 1;
             int verticalLineCount = 0;
-            string horizontalLine = "  - - - + - - - + - - -";
-            string horizontalLineDivider = "  ------+-------+------";
+            string horizontalLine = " | - - - + - - - + - - - |";
+            string horizontalLineDivider = " |-------+-------+-------|";
             int sideNumber = 2;
             
-            Console.Write("\n  1 2 3   4 5 6   7 8 9 \n1 ");
+            Console.Write("\n   1 2 3   4 5 6   7 8 9\n +-------+-------+-------+\n1| ");
 
             foreach (var item in board)
             {
                 // Settings Vertical lines
                 if (verticalLineCount is 3)
                 {
-                    Console.Write("| ");
+                    Console.Write("| "); // Want two space
                     verticalLineCount = 1;
                 }
                 else
@@ -30,21 +30,22 @@ public class Program
                 // Settings value 0 in board to blank
                 if (item == 0)
                 {
-                    Console.Write("0 ");
+                    Console.Write(" "); // replacing all 0 in the list to blank
                 }
                 else
                 {
-                    Console.Write(item + " ");
+                    Console.Write(item);
                 }
-
+                
                 // Starting New line info
                 if (newLine % 9 == 0)
                 {
+                    Console.Write(" |"); // Want no space
                     Console.WriteLine();
                     if (sideNumber is 4 || sideNumber is 7)
                     {
                         Console.WriteLine(horizontalLineDivider);
-                        Console.Write(sideNumber++ + " ");
+                        Console.Write(sideNumber++ + "|"); // Want one space
                         // Settings here to start a new line count
                         verticalLineCount = 0;
                     }
@@ -53,15 +54,18 @@ public class Program
                     else if (sideNumber < 10)
                     {
                         Console.WriteLine(horizontalLine);
-                        Console.Write(sideNumber++ + " ");
+                        Console.Write(sideNumber++ + "|"); // Want one space
                         // Settings here to start a new line count
                         verticalLineCount = 0;
                     }
+
+
                 }
                 newLine++;
+                Console.Write(" ");
             }
             // Helps with spacing in terminal
-            Console.WriteLine();
+            Console.WriteLine("+-------+-------+-------+\n");
         }
 
 
