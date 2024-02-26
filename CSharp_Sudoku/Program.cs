@@ -4,6 +4,16 @@ using System;
 
 public class Program
 {
+        public static (string?, string?) UserModInput() {
+            Console.Write("Vetical Cell Number: ");
+            string? VerticalNumber = Console.ReadLine();
+
+            Console.Write("Horizonal Cell Number: ");
+            string? HorizonalNumner = Console.ReadLine();
+            // The ? infront of the string type is to help with nullable inputs
+
+            return (VerticalNumber, HorizonalNumner);
+        }
         public static void ShowBoard(int[,] board)
         {
             int newLine = 1;
@@ -58,8 +68,6 @@ public class Program
                         // Settings here to start a new line count
                         verticalLineCount = 0;
                     }
-
-
                 }
                 newLine++;
                 Console.Write(" ");
@@ -67,8 +75,6 @@ public class Program
             // Helps with spacing in terminal
             Console.WriteLine("+-------+-------+-------+\n");
         }
-
-
         private static void Main()
     {
         int[,] Board = {
