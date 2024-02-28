@@ -21,6 +21,19 @@ public class Program
         return ModValues;
     }
     
+    public static int[,] EditBoard(int[,] board)
+    {
+        Tuple<string?, string?, string?> modInput = UserModInput();
+
+        int row = Convert.ToInt32(modInput.Item1) -1;
+        int col = Convert.ToInt32(modInput.Item2) - 1;
+        int newValue = Convert.ToInt32(modInput.Item3); 
+        
+        board[col, row] = newValue;
+
+        return board;
+    }
+
     public static void ShowBoard(int[,] board)
     {
         int newLine = 1;
@@ -92,9 +105,54 @@ public class Program
             Console.WriteLine("End Game - G\n");
     }
     
+    public static string? UserInput()
+    {
+        Console.Write("> ");
+        string? input = Console.ReadLine();
+        return input;
+    }
+
+    private static void GameRunner(int[,] board)
+    {
+        bool run = true;
+
+        while (run is true)
+        {
+            string? userInput = UserInput().ToUpper();
+
+            switch (userInput)
+            {
+                case "S":
+                    Console.WriteLine("Show Options");
+                    ShowOptions();
+                    break;
+
+                case "D":
+                    Console.WriteLine("Displaying Board");
+                    ShowBoard(board);
+                    break;
+
+                case "E":
+                    Console.WriteLine("Editing Board");
+                    EditBoard(board);
+                    ShowBoard(board);
+                    break;
+
+                case "F":
+                    Console.WriteLine("Loading File");
+                    break;
+
+                case "G":
+                    Console.WriteLine("End Game");
+                    run = false;
+                    break;
+            }
+        }
+    }
+
     private static void Main()
     {
-        int[,] Board = {
+        int[,] board = {
             {5,3,0,0,7,0,0,0,0},
             {6,0,0,1,9,5,0,0,0},
             {0,9,8,0,0,0,0,6,0},
@@ -106,7 +164,8 @@ public class Program
             {0,0,0,0,8,0,0,7,9}
             };
 
-        ShowBoard(Board);
+        ShowBoard(board);
         ShowOptions();
+        GameRunner(board);
     }
 }
