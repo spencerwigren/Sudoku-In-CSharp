@@ -21,6 +21,19 @@ public class Program
         return ModValues;
     }
     
+    public static int[,] EditBoard(int[,] board)
+    {
+        Tuple<string?, string?, string?> modInput = UserModInput();
+
+        int row = Convert.ToInt32(modInput.Item1) -1;
+        int col = Convert.ToInt32(modInput.Item2) - 1;
+        int newValue = Convert.ToInt32(modInput.Item3); 
+        
+        board[col, row] = newValue;
+
+        return board;
+    }
+
     public static void ShowBoard(int[,] board)
     {
         int newLine = 1;
@@ -121,6 +134,8 @@ public class Program
 
                 case "E":
                     Console.WriteLine("Editing Board");
+                    EditBoard(board);
+                    ShowBoard(board);
                     break;
 
                 case "F":
