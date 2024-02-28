@@ -92,9 +92,52 @@ public class Program
             Console.WriteLine("End Game - G\n");
     }
     
+    public static string? UserInput()
+    {
+        Console.Write("> ");
+        string? input = Console.ReadLine();
+        return input;
+    }
+
+    private static void GameRunner(int[,] board)
+    {
+        bool run = true;
+
+        while (run is true)
+        {
+            string? userInput = UserInput().ToUpper();
+
+            switch (userInput)
+            {
+                case "S":
+                    Console.WriteLine("Show Options");
+                    ShowOptions();
+                    break;
+
+                case "D":
+                    Console.WriteLine("Displaying Board");
+                    ShowBoard(board);
+                    break;
+
+                case "E":
+                    Console.WriteLine("Editing Board");
+                    break;
+
+                case "F":
+                    Console.WriteLine("Loading File");
+                    break;
+
+                case "G":
+                    Console.WriteLine("End Game");
+                    run = false;
+                    break;
+            }
+        }
+    }
+
     private static void Main()
     {
-        int[,] Board = {
+        int[,] board = {
             {5,3,0,0,7,0,0,0,0},
             {6,0,0,1,9,5,0,0,0},
             {0,9,8,0,0,0,0,6,0},
@@ -106,7 +149,8 @@ public class Program
             {0,0,0,0,8,0,0,7,9}
             };
 
-        ShowBoard(Board);
+        ShowBoard(board);
         ShowOptions();
+        GameRunner(board);
     }
 }
